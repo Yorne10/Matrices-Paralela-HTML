@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrices Guardadas</title>
+</head>
+<body>
+    <h1>Matrices Guardadas</h1>
+    <ul>
+        {% for matrix in matrices %}
+            <li>ID {{ matrix[0] }}: {{ matrix[1] }}</li>
+        {% endfor %}
+    </ul>
+    <br><br>
+    <a href="{{ url_for('index') }}">Volver al Inicio</a>
+</body>
+</html>

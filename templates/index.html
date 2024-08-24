@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso de Matriz</title>
+</head>
+<body>
+    <h1>Tamaño de la Matriz</h1>
+    <hr>
+    <br>
+    <form action="{{ url_for('index') }}" method="post">
+        <label for="rows">Filas:</label>
+        <input type="number" id="rows" name="rows" value="{{ rows }}" required>
+        <br>
+        <label for="cols">Columnas:</label>
+        <input type="number" id="cols" name="cols" value="{{ cols }}" required>
+        <br><br>
+        <input type="submit" value="Generar Matriz">
+    </form>
+
+    {% if rows and cols %}
+    <h2>Ingrese los Valores de la Matriz</h2>
+    <form action="{{ url_for('save_matrix_route') }}" method="post">
+        <input type="hidden" name="rows" value="{{ rows }}">
+        <input type="hidden" name="cols" value="{{ cols }}">
+        {% for i in range(rows) %}
+            {% for j in range(cols) %}
+                <label for="cell_{{ i }}_{{ j }}">Elemento ({{ i+1 }},{{ j+1 }}):</label>
+                <input type="text" id="cell_{{ i }}_{{ j }}" name="cell_{{ i }}_{{ j }}" required>
+                <br>
+            {% endfor %}
+        {% endfor %}
+        <br>
+        <input type="submit" value="Guardar Matriz">
+    </form>
+    {% endif %}
+    <br><br>
+    <a href="{{ url_for('show_matrices') }}">Ver Matrices Guardadas</a>
+</body>
+</html>
